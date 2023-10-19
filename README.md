@@ -2,7 +2,14 @@
 
 Example Python project with solutions to a few Python "interview-style" problems found on the internet.
 
+Keep in mind these are demonstrations of basic Python concepts that I might expect to code within an hour-long live 
+technical screening.
+
+Check out `sum_to_n()` to see a demonstration of recursion and use of `yield`.
+
 Unit tests demonstrate the solutions.
+
+Object orientation examples in `gene_identifier.py`
 
 ## Style notes
 The project uses a vanilla Python project structure and Python standard unit tests.
@@ -18,7 +25,12 @@ IMPORTANT: Requires Python 3.9 or later.
 
 ## Try it
 
-`python -m unittest discover`
+```bash
+python3.11 -m venv venv # or your choice of python >= 3.9
+. venv/bin/activate
+pip install -r requirements.txt
+python -m unittest discover
+```
 
 ## Project structure
 
