@@ -1,6 +1,6 @@
 import argparse
 from collections.abc import *
-
+from typing import Optional
 
 def format_number(num: int) -> str:
     """
@@ -25,9 +25,9 @@ def format_number(num: int) -> str:
     return "".join(reversed(comma))
 
 
-def first_recurring_char(s: str) -> str:
+def first_recurring_char(s: str) -> Optional[str]:
     """
-    Given a string, write a function “recurring char” to find the strings first recurring character. Return “None” if
+    Given a string, write a function “recurring char” to find the strings first recurring character. Return None if
     there is no recurring character.
 
     :param s:
@@ -39,13 +39,15 @@ def first_recurring_char(s: str) -> str:
             return ch
         else:
             chars[ch] = 1
-    return "None"
+    return None
 
 
 def sum_to_n(integers: list, n: int) -> Generator[list]:
     """
     Given a list of integers, and an integer N, write a function “sum_to_n” to find all combinations that sum to the
     value N.
+
+    Note: This solution uses recursion.
 
     Example:
 
@@ -60,6 +62,7 @@ def sum_to_n(integers: list, n: int) -> Generator[list]:
     :return: A generator of lists of the combinations of addends that sum to N.
     """
 
+    # This is an inner function because it is not meant to be used outside of `sum_to_n`.
     def inner_sum_to_n(integers: list,
                        n: int,
                        candidate_sum: int,
@@ -93,9 +96,14 @@ def sum_to_n(integers: list, n: int) -> Generator[list]:
                 new_candidate_answer = candidate_answer + [i]
                 yield from inner_sum_to_n(integers, n, new_sum, j, new_candidate_answer)
 
-    # Search only integers < N
-    to_search = sorted(set([i for i in integers if i <= n]))
+    if n <= 0:
+        # not dealing with non-positive right now
+        return None
+
+    # Search only integers < N and > 0
+    to_search = sorted(set([i for i in integers if n >= i > 0]))
     yield from inner_sum_to_n(to_search, n, 0, 0, [])
+
 
 
 if __name__ == "__main__":
