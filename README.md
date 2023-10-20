@@ -26,7 +26,7 @@ IMPORTANT: Requires Python 3.9 or later.
 ## Try it
 
 ```bash
-python3.11 -m venv venv # or your choice of python >= 3.9
+python3 -m venv venv # or your choice of python >= 3.9
 . venv/bin/activate
 pip install -r requirements.txt
 python -m unittest discover
